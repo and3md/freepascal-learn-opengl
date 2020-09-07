@@ -169,7 +169,7 @@ const
 {$IFDEF MSWINDOWS}
   GLFW_DLL = 'GLFW3.DLL';
 {$ELSE}
-  GLFW_DLL = 'GLFW3.so';
+  GLFW_DLL = 'glfw.so.3';
 {$ENDIF}
 
   //========================================================================
