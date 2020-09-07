@@ -1,0 +1,10 @@
+
+*.lps
+
+backup
+
+*.o
+
+*.ppu
+
+*.compiled
