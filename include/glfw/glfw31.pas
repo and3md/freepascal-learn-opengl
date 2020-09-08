@@ -182,7 +182,8 @@ const
 
   GLFW_VERSION_REVISION = 0;
 
-
+  GLFW_TRUE = 1;
+  GLFW_FALSE = 0;
 
   GLFW_RELEASE = 0;
 

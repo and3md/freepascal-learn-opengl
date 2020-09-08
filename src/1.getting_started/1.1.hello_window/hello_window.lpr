@@ -9,8 +9,6 @@ uses
   Classes, gl, GLext, glfw31;
 
 const
-  GLFW_TRUE = 1;
-  GLFW_FALSE = 0;
   // settings
   SCR_WIDTH = 800;
   SCR_HEIGHT = 600;
