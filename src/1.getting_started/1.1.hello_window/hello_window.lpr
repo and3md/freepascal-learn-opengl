@@ -59,7 +59,7 @@ begin
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, @framebuffer_size_callback);
 
-  // glad: load all OpenGL function pointers
+  // GLext: load all OpenGL function pointers
   // ---------------------------------------
   if Load_GL_version_3_3_CORE = false then
   begin
