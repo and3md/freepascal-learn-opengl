@@ -213,6 +213,7 @@ begin
   // ------------------------------------------------------------------------
   glDeleteVertexArrays(1, @VAO);
   glDeleteBuffers(1, @VBO);
+  glDeleteProgram(shaderProgram);
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------
