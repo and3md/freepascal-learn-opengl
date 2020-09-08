@@ -1,12 +1,12 @@
 
 *.lps
+*.o
+*.ppu
+*.compiled
 
 backup
 
-*.o
-
-*.ppu
-
-*.compiled
-
 src/1\.getting_started/1\.1\.hello_window/hello_window
+src/1\.getting_started/1\.1\.hello_window/hello_window.exe
+src/1\.getting_started/1\.2\.hello_window_clear/hello_window_clear
+src/1\.getting_started/1\.2\.hello_window_clear/hello_window_clear.exe
