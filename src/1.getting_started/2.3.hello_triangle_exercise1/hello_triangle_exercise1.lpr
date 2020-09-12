@@ -152,7 +152,7 @@ begin
   glLinkProgram(shaderProgram);
 
   // check for link errors
-  glGetProgramiv(fragmentShader, GL_LINK_STATUS, @success);
+  glGetProgramiv(shaderProgram, GL_LINK_STATUS, @success);
 
   if success <> GL_TRUE then
   begin
