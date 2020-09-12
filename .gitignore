@@ -22,3 +22,5 @@ src/1\.getting_started/2\.5\.hello_triangle_exercise3/hello_triangle_exercise3
 src/1\.getting_started/2\.5\.hello_triangle_exercise3/hello_triangle_exercise3.exe
 src/1\.getting_started/3\.1\.shaders_uniform/shaders_uniform
 src/1\.getting_started/3\.1\.shaders_uniform/shaders_uniform.exe
+src/1\.getting_started/3\.2\.shaders_interpolation/shaders_interpolation
+src/1\.getting_started/3\.2\.shaders_interpolation/shaders_interpolation.exe
