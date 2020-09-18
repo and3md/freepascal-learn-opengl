@@ -3,6 +3,7 @@
 *.o
 *.ppu
 *.compiled
+*.dbg
 
 backup
 
@@ -34,3 +35,5 @@ src/1\.getting_started/3\.6\.shaders_exercise3/shaders_exercise3
 src/1\.getting_started/3\.6\.shaders_exercise3/shaders_exercise3.exe
 src/1\.getting_started/4\.1\.textures/textures
 src/1\.getting_started/4\.1\.textures/textures.exe
+src/1\.getting_started/4\.2\.textures_combined/textures_combined
+src/1\.getting_started/4\.2\.textures_combined/textures_combined.exe
