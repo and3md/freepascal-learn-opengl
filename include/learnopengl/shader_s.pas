@@ -38,6 +38,8 @@ var
   fShaderFile: TStringList;
   vShaderCode: PGLchar;
   fShaderCode: PGLchar;
+  vertexCode: String;
+  fragmentCode: String;
   vertex: GLuint;
   fragment: GLuint;
 begin
@@ -50,15 +52,21 @@ begin
 
       vShaderFile.LoadFromFile(vertexPath);
       fShaderFile.LoadFromFile(fragmentPath);
+
+      vertexCode := vShaderFile.Text;
+      fragmentCode := fShaderFile.Text;
+
     except
       Writeln('ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ');
     end;
-    vShaderCode := vShaderFile.GetText;
-    fShaderCode := fShaderFile.GetText;
   finally
     FreeAndNil(vShaderFile);
     FreeAndNil(fShaderFile);
   end;
+
+  vShaderCode := PGLchar(vertexCode);
+  fShaderCode := PGLchar(fragmentCode);
+
   // 2. compile shaders
   // vertex shader
   vertex := glCreateShader(GL_VERTEX_SHADER);
@@ -81,8 +89,6 @@ begin
   // delete the shaders as they're linked into our program now and no longer necessary
   glDeleteShader(vertex);
   glDeleteShader(fragment);
-  StrDispose(vShaderCode);
-  StrDispose(fShaderCode);
 end;
 
 // activate the shader
