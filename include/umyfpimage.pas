@@ -101,11 +101,7 @@ var
   Reader: TFPReaderPNG;
 
   // flip variables
-  Y: Integer;
   RowSize: Integer;
-  SourceRow: PByte;
-  DestRow: PByte;
-  BuffArray: array of Byte;
 begin
   MyImage := nil;
   Reader := nil;
