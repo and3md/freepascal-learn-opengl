@@ -14,16 +14,16 @@ interface
 uses
   Classes, SysUtils, matrix, Math;
 
-procedure PrintMatrix4(Name: String; M: Tmatrix4_single);
-function TranslateMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_single;
-function RotateMatrix4(M: Tmatrix4_single; Angle: Single; Axis: Tvector3_single): Tmatrix4_single;
-function ScaleMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_single;
-function NormalizeVector3(V: Tvector3_single):Tvector3_single;
+procedure PrintMatrix4(const Name: String; const M: Tmatrix4_single);
+function TranslateMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
+function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
+function ScaleMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
+function NormalizeVector3(const V: Tvector3_single):Tvector3_single;
 function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
 
 implementation
 
-procedure PrintMatrix4(Name: String; M: Tmatrix4_single);
+procedure PrintMatrix4(const Name: String; const M: Tmatrix4_single);
 var
   I, J: Integer;
 begin
@@ -37,7 +37,7 @@ begin
   WriteLn(']');
 end;
 
-function TranslateMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_single;
+function TranslateMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
 var
   T: Tmatrix4_single;
 begin
@@ -49,7 +49,7 @@ begin
   Result := T * M;
 end;
 
-function RotateMatrix4(M: Tmatrix4_single; Angle: Single; Axis: Tvector3_single): Tmatrix4_single;
+function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
 var
   Rotate: Tmatrix4_single;
   NormalizedAxis: Tvector3_single;
@@ -77,7 +77,7 @@ begin
   Result := Rotate * M;
 end;
 
-function ScaleMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_single;
+function ScaleMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
 var
   Scale : Tmatrix4_single;
 begin
@@ -91,7 +91,7 @@ begin
   Result := Scale * M;
 end;
 
-function NormalizeVector3(V: Tvector3_single): Tvector3_single;
+function NormalizeVector3(const V: Tvector3_single): Tvector3_single;
 var
   Length: Single;
 begin
