@@ -19,6 +19,7 @@ function TranslateMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_sing
 function RotateMatrix4(M: Tmatrix4_single; Angle: Single; Axis: Tvector3_single): Tmatrix4_single;
 function ScaleMatrix4(M: Tmatrix4_single; V: Tvector3_single): Tmatrix4_single;
 function NormalizeVector3(V: Tvector3_single):Tvector3_single;
+function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
 
 implementation
 
@@ -105,6 +106,31 @@ begin
   end;
 
   Result.init_zero;
+end;
+
+{
+Based on: https://gamedev.stackexchange.com/questions/120338/what-does-a-perspective-projection-matrix-look-like-in-opengl
+}
+function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
+var
+  FrustumDepth: Single;
+begin
+  FrustumDepth := FarDist - NearDist;
+
+  Result.init_identity;
+
+  if (AspectRatio = 0) or (FrustumDepth = 0) then
+  begin
+    Writeln('Perspective matrix - Bad attributes!');
+    Exit;
+  end;
+
+  Result.data[1, 1] := 1 / tan(0.5 * Fov);
+  Result.data[0, 0] := Result.data[1, 1] / AspectRatio;
+  Result.data[2, 2] := (-(FarDist + NearDist)) / FrustumDepth;
+  Result.data[2, 3] := -1.0;
+  Result.data[3, 2] := ( -(2.0 * NearDist * FarDist)) / FrustumDepth;
+  Result.data[3, 3] := 0.0;
 end;
 
 
