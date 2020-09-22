@@ -20,6 +20,7 @@ function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvec
 function ScaleMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
 function NormalizeVector3(const V: Tvector3_single):Tvector3_single;
 function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
+function LookAt(const Position, Target, WorldUp: Tvector3_single): Tmatrix4_single;
 
 implementation
 
@@ -131,6 +132,39 @@ begin
   Result.data[2, 3] := -1.0;
   Result.data[3, 2] := ( -(2.0 * NearDist * FarDist)) / FrustumDepth;
   Result.data[3, 3] := 0.0;
+end;
+
+{ Algorithm from learnopengl.com tutorial }
+function LookAt(const Position, Target, WorldUp: Tvector3_single): Tmatrix4_single;
+var
+  XAxis: Tvector3_single;
+  YAxis: Tvector3_single;
+  ZAxis: Tvector3_single;
+  Translation: Tmatrix4_single;
+  Rotation: Tmatrix4_single;
+begin
+  ZAxis := NormalizeVector3(Position - Target);
+  XAxis := NormalizeVector3(NormalizeVector3(WorldUp) >< ZAxis);
+  YAxis := ZAxis >< XAxis;
+
+  Translation.init_identity;
+  Translation.data[3, 0] := -Position.data[0];
+  Translation.data[3, 1] := -Position.data[1];
+  Translation.data[3, 2] := -Position.data[2];
+  Rotation.init_identity;
+  Rotation.data[0, 0] := XAxis.data[0];
+  Rotation.data[1, 0] := XAxis.data[1];
+  Rotation.data[2, 0] := XAxis.data[2];
+
+  Rotation.data[0, 1] := YAxis.data[0];
+  Rotation.data[1, 1] := YAxis.data[1];
+  Rotation.data[2, 1] := YAxis.data[2];
+
+  Rotation.data[0, 2] := ZAxis.data[0];
+  Rotation.data[1, 2] := ZAxis.data[1];
+  Rotation.data[2, 2] := ZAxis.data[2];
+
+  Result := Translation * Rotation;
 end;
 
 
