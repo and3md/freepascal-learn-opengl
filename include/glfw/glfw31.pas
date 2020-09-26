@@ -146,7 +146,7 @@ type
     button, action, mods: integer); cdecl;
 
   pGLFWcursorposfun = ^GLFWcursorposfun;
-  GLFWcursorposfun = procedure(window: pGLFWwindow; xpos, ypos: integer); cdecl;
+  GLFWcursorposfun = procedure(window: pGLFWwindow; xpos, ypos: double); cdecl;
 
   pGLFWcursorenterfun = ^GLFWcursorenterfun;
   GLFWcursorenterfun = procedure(window: pGLFWwindow); cdecl;
