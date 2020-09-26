@@ -152,7 +152,7 @@ type
   GLFWcursorenterfun = procedure(window: pGLFWwindow); cdecl;
 
   pGLFWscrollfun = ^GLFWscrollfun;
-  GLFWscrollfun = procedure(window: pGLFWwindow; xoffset, yoffset: integer); cdecl;
+  GLFWscrollfun = procedure(window: pGLFWwindow; xoffset, yoffset: double); cdecl;
 
   pGLFWglproc = ^GLFWglproc;
   GLFWglproc = procedure; cdecl;
