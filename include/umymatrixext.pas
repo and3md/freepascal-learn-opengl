@@ -18,9 +18,11 @@ procedure PrintMatrix4(const Name: String; const M: Tmatrix4_single);
 function TranslateMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
 function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
 function ScaleMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
-function NormalizeVector3(const V: Tvector3_single):Tvector3_single;
 function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
 function LookAt(const Position, Target, WorldUp: Tvector3_single): Tmatrix4_single;
+
+function NormalizeVector3(const V: Tvector3_single): Tvector3_single;
+function Vector3(X, Y, Z: Single): Tvector3_single;
 
 implementation
 
@@ -92,23 +94,6 @@ begin
   Result := Scale * M;
 end;
 
-function NormalizeVector3(const V: Tvector3_single): Tvector3_single;
-var
-  Length: Single;
-begin
-  Length := V.length;
-
-  if Length > 0 then
-  begin
-    Result.data[0] := V.data[0] / Length;
-    Result.data[1] := V.data[1] / Length;
-    Result.data[2] := V.data[2] / Length;
-    Exit;
-  end;
-
-  Result.init_zero;
-end;
-
 {
 Based on: https://gamedev.stackexchange.com/questions/120338/what-does-a-perspective-projection-matrix-look-like-in-opengl
 }
@@ -165,6 +150,29 @@ begin
   Rotation.data[2, 2] := ZAxis.data[2];
 
   Result := Translation * Rotation;
+end;
+
+
+function NormalizeVector3(const V: Tvector3_single): Tvector3_single;
+var
+  Length: Single;
+begin
+  Length := V.length;
+
+  if Length > 0 then
+  begin
+    Result.data[0] := V.data[0] / Length;
+    Result.data[1] := V.data[1] / Length;
+    Result.data[2] := V.data[2] / Length;
+    Exit;
+  end;
+
+  Result.init_zero;
+end;
+
+function Vector3(X, Y, Z: Single): Tvector3_single;
+begin
+  Result.init(X, Y, Z);
 end;
 
 
