@@ -76,3 +76,5 @@ src/2\.lighting/1\.colors/colors
 src/2\.lighting/1\.colors/colors.exe
 src/2\.lighting/2\.1\.basic_lighting_diffuse/basic_lighting_diffuse
 src/2\.lighting/2\.1\.basic_lighting_diffuse/basic_lighting_diffuse.exe
+src/2\.lighting/2\.2\.basic_lighting_specular/basic_lighting_specular
+src/2\.lighting/2\.2\.basic_lighting_specular/basic_lighting_specular.exe
