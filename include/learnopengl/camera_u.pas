@@ -55,6 +55,9 @@ type
       // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
       procedure ProcessKeyboard(direction: Camera_Movement; deltaTime: Single);
 
+      // 7.5camera_exercise1 keyboard processing version
+      procedure ProcessKeyboardGround(direction: Camera_Movement; deltaTime: Single);
+
       // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
       procedure ProcessMouseMovement(xoffset, yoffset: Single; constrainPitch: GLboolean = GL_TRUE);
 
@@ -128,6 +131,15 @@ begin
     Position := Position - Right * velocity;
   if direction = Camera_Movement.RIGHT then
     Position := Position + Right * velocity;
+end;
+
+// 7.5camera_exercise1 keyboard processing version
+procedure TCamera.ProcessKeyboardGround(direction: Camera_Movement; deltaTime: Single);
+begin
+  ProcessKeyboard(direction, deltaTime);
+
+  // make sure the user stays at the ground level
+  Position.data[1] := 0.0;  // <-- this one-liner keeps the user at the ground level (xz plane)
 end;
 
 // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
