@@ -29,6 +29,7 @@ type
 
   function LoadJpegImage(ImageFile: string; FlipVertical: Boolean): TMyRGB8BitImage;
   function LoadPNGImage(ImageFile: string; FlipVertical: Boolean): TMyRGBA8BitImage;
+  function LoadImage(ImageFile: string; FlipVertical: Boolean): TFPCompactImgBase;
 
 
 implementation
@@ -130,6 +131,28 @@ begin
     FreeAndNil(Reader);
   end;
   Result := MyImage;
+end;
+
+
+function LoadImage(ImageFile: string; FlipVertical: Boolean): TFPCompactImgBase;
+var
+  Extension: string;
+begin
+  Extension := ExtractFileExt(ImageFile);
+
+  if Extension = '.jpg' then
+  begin
+    Result := LoadJpegImage(ImageFile, FlipVertical);
+    Exit;
+  end;
+
+  if Extension = '.png' then
+  begin
+    Result := LoadPNGImage(ImageFile, FlipVertical);
+    Exit;
+  end;
+
+  Result := nil;
 end;
 
 end.
