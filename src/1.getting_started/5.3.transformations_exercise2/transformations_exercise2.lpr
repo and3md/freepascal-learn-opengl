@@ -66,7 +66,6 @@ var
   ImageRGBA: TMyRGBA8BitImage;
 
   transform: Tmatrix4_single;
-  vec3: Tvector3_single;
   transformLoc: GLuint;
   scaleAmount: Single;
 
@@ -214,11 +213,8 @@ begin
 
     // first container
     // ---------------
-    vec3.init(0.5, -0.5, 0);
-    transform := TranslateMatrix4(transform, vec3);
-
-    vec3.init(0, 0, 1.0);
-    transform := RotateMatrix4(transform, Single(glfwGetTime), vec3);
+    transform := TranslateMatrix4(transform, Vector3(0.5, -0.5, 0));
+    transform := RotateMatrix4(transform, Single(glfwGetTime), Vector3(0, 0, 1.0));
 
     // uncomment to print matrix in terminal
     //PrintMatrix4('transform', transform);
@@ -236,13 +232,10 @@ begin
     // ---------------------
 
     transform.init_identity; // reset it to identity matrix
-
-    vec3.init(-0.5, 0.5, 0);
-    transform := TranslateMatrix4(transform, vec3);
+    transform := TranslateMatrix4(transform, Vector3(-0.5, 0.5, 0));
 
     scaleAmount := sin(glfwGetTime);
-    vec3.init(scaleAmount, scaleAmount, scaleAmount);
-    transform := ScaleMatrix4(transform, vec3);
+    transform := ScaleMatrix4(transform, Vector3(scaleAmount, scaleAmount, scaleAmount));
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, @transform.data);
 
     // now with the uniform matrix being replaced with new transformations, draw it again
