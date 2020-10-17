@@ -102,7 +102,6 @@ var
   model: Tmatrix4_single;
   view: Tmatrix4_single;
   projection: Tmatrix4_single;
-  vec3: Tvector3_single;
   I: Integer;
   angle: Single;
 
@@ -261,14 +260,13 @@ begin
 
     // activate shader
     ourShader.use();
+
+    // create transformations
     view.init_identity;
     projection.init_identity;
 
-    vec3.init(0.5, 1.0, 0.0);
-    model := RotateMatrix4(model, Single(glfwGetTime), vec3);
     projection := Perspective(DegToRad(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
-    vec3.init(0.0, 0.0, -3.0);
-    view := TranslateMatrix4(view, vec3);
+    view := TranslateMatrix4(view, Vector3(0.0, 0.0, -3.0));
     // pass transformation matrices to the shader
     ourShader.setMat4('projection', projection);  // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
     ourShader.setMat4('view', view);
@@ -282,8 +280,7 @@ begin
 
       angle := 20.0 * i;
 
-      vec3.init(1.0, 0.3, 0.5);
-      model := RotateMatrix4(model, DegToRad(angle), vec3);
+      model := RotateMatrix4(model, DegToRad(angle), Vector3(1.0, 0.3, 0.5));
       ourShader.setMat4('model', model);
 
       glDrawArrays(GL_TRIANGLES, 0, 36);
