@@ -100,7 +100,6 @@ var
   model: Tmatrix4_single;
   view: Tmatrix4_single;
   projection: Tmatrix4_single;
-  vec3: Tvector3_single;
   modelLoc: GLuint;
   viewLoc: GLuint;
 
@@ -249,11 +248,8 @@ begin
     view.init_identity;
     projection.init_identity;
 
-    vec3.init(0.5, 1.0, 0.0);
-    model := RotateMatrix4(model, Single(glfwGetTime), vec3);
-
-    vec3.init(0.0, 0.0, -3.0);
-    view := TranslateMatrix4(view, vec3);
+    model := RotateMatrix4(model, Single(glfwGetTime), Vector3(0.5, 1.0, 0.0));
+    view := TranslateMatrix4(view, Vector3(0.0, 0.0, -3.0));
 
     projection := Perspective(DegToRad(45), SCR_WIDTH / SCR_HEIGHT, 0.1, 100);
     // retrieve the matrix uniform locations
