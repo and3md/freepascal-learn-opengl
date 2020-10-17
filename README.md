@@ -4,7 +4,7 @@ Free Pascal (FPC) port of https://github.com/JoeyDeVries/LearnOpenGL
 ## Changes compared to the original c++ sources
 
 I try to keep the sources as close as possible to the C ++ sources but some things I preferred to do more like pascal:
-
+* The sources of the examples are in the .lpr files and can be easy showed in Lazarus (menu Project->View Project Source) 
 * Images are loaded with fpimage with my litle helper functions defined in [UMyFPImage unit](https://github.com/and3md/freepascal-learn-opengl/blob/master/include/umyfpimage.pas)
 * I tried to use standard freepascal matrix unit but it's lack some functions so I implemented them in [UMyMatrixExt](https://github.com/and3md/freepascal-learn-opengl/blob/master/include/umymatrixext.pas)
 * I used standard GL and GLext FPC units instead of GLAD.
