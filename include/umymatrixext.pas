@@ -16,13 +16,13 @@ uses
 
 procedure PrintMatrix4(const Name: String; const M: Tmatrix4_single);
 function TranslateMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
-function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
+function RotateMatrix4(const M: Tmatrix4_single; const Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
 function ScaleMatrix4(const M: Tmatrix4_single; const V: Tvector3_single): Tmatrix4_single;
-function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
+function Perspective(const Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
 function LookAt(const Position, Target, WorldUp: Tvector3_single): Tmatrix4_single;
 
 function NormalizeVector3(const V: Tvector3_single): Tvector3_single;
-function Vector3(X, Y, Z: Single): Tvector3_single;
+function Vector3(const X, Y, Z: Single): Tvector3_single;
 
 implementation
 
@@ -52,7 +52,7 @@ begin
   Result := T * M;
 end;
 
-function RotateMatrix4(const M: Tmatrix4_single; Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
+function RotateMatrix4(const M: Tmatrix4_single; const Angle: Single; const Axis: Tvector3_single): Tmatrix4_single;
 var
   Rotate: Tmatrix4_single;
   NormalizedAxis: Tvector3_single;
@@ -97,7 +97,7 @@ end;
 {
 Based on: https://gamedev.stackexchange.com/questions/120338/what-does-a-perspective-projection-matrix-look-like-in-opengl
 }
-function Perspective(Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
+function Perspective(const Fov, AspectRatio, NearDist, FarDist: Single): Tmatrix4_single;
 var
   FrustumDepth: Single;
 begin
@@ -170,7 +170,7 @@ begin
   Result.init_zero;
 end;
 
-function Vector3(X, Y, Z: Single): Tvector3_single;
+function Vector3(const X, Y, Z: Single): Tvector3_single;
 begin
   Result.init(X, Y, Z);
 end;
