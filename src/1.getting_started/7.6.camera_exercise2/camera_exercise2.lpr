@@ -161,7 +161,7 @@ var
   model: Tmatrix4_single;
   view: Tmatrix4_single;
   projection: Tmatrix4_single;
-  vec3: Tvector3_single;
+
   I: Integer;
   angle: Single;
 
@@ -338,7 +338,6 @@ begin
     ourShader.use();
 
     // camera/view transformation
-
     view := calculate_lookAt_matrix(cameraPos, cameraPos + cameraFront, cameraUp);
     ourShader.setMat4('view', view);
 
@@ -351,8 +350,7 @@ begin
 
       angle := 20.0 * i;
 
-      vec3.init(1.0, 0.3, 0.5);
-      model := RotateMatrix4(model, DegToRad(angle), vec3);
+      model := RotateMatrix4(model, DegToRad(angle), Vector3(1.0, 0.3, 0.5));
       ourShader.setMat4('model', model);
 
       glDrawArrays(GL_TRIANGLES, 0, 36);

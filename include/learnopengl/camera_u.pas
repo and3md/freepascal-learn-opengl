@@ -45,24 +45,24 @@ type
 
       // constructor with vectors
       constructor Create(const position_: Tvector3_single);
-      constructor Create(const position_, up_: Tvector3_single; yaw_: Single = DEFAULT_YAW; pitch_: Single = DEFAULT_PITCH);
+      constructor Create(const position_, up_: Tvector3_single; const yaw_: Single = DEFAULT_YAW; const pitch_: Single = DEFAULT_PITCH);
       // constructor with scalar values
-      constructor Create(posX, posY, posZ, upX, upY, upZ, yaw_, pitch_: Single);
+      constructor Create(const posX, posY, posZ, upX, upY, upZ, yaw_, pitch_: Single);
 
       // returns the view matrix calculated using Euler Angles and the LookAt Matrix
       function GetViewMatrix:Tmatrix4_single;
 
       // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
-      procedure ProcessKeyboard(direction: Camera_Movement; deltaTime: Single);
+      procedure ProcessKeyboard(const direction: Camera_Movement; const deltaTime: Single);
 
       // 7.5camera_exercise1 keyboard processing version
-      procedure ProcessKeyboardGround(direction: Camera_Movement; deltaTime: Single);
+      procedure ProcessKeyboardGround(const direction: Camera_Movement; const deltaTime: Single);
 
       // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
-      procedure ProcessMouseMovement(xoffset, yoffset: Single; constrainPitch: GLboolean = GL_TRUE);
+      procedure ProcessMouseMovement(xoffset, yoffset: Single; const constrainPitch: GLboolean = GL_TRUE);
 
       // processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
-      procedure ProcessMouseScroll(yoffset: Single);
+      procedure ProcessMouseScroll(const yoffset: Single);
 
     private
       procedure updateCameraVectors;
@@ -85,7 +85,7 @@ begin
 end;
 
 // constructor with vectors
-constructor TCamera.Create(const position_, up_: Tvector3_single; yaw_: Single; pitch_: Single);
+constructor TCamera.Create(const position_, up_: Tvector3_single; const yaw_: Single; const pitch_: Single);
 begin
   Position := position_;
   WorldUp := up_;
@@ -98,7 +98,7 @@ begin
 end;
 
 // constructor with scalar values
-constructor TCamera.Create(posX, posY, posZ, upX, upY, upZ, yaw_, pitch_: Single);
+constructor TCamera.Create(const posX, posY, posZ, upX, upY, upZ, yaw_, pitch_: Single);
 begin
   Position.init(posX, posY, posZ);
   WorldUp.init(upX, upY, upZ);
@@ -117,7 +117,7 @@ begin
 end;
 
 // processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
-procedure TCamera.ProcessKeyboard(direction: Camera_Movement; deltaTime: Single);
+procedure TCamera.ProcessKeyboard(const direction: Camera_Movement; const deltaTime: Single);
 var
   velocity: Single;
 begin
@@ -134,7 +134,7 @@ begin
 end;
 
 // 7.5camera_exercise1 keyboard processing version
-procedure TCamera.ProcessKeyboardGround(direction: Camera_Movement; deltaTime: Single);
+procedure TCamera.ProcessKeyboardGround(const direction: Camera_Movement; const deltaTime: Single);
 begin
   ProcessKeyboard(direction, deltaTime);
 
@@ -143,7 +143,7 @@ begin
 end;
 
 // processes input received from a mouse input system. Expects the offset value in both the x and y direction.
-procedure TCamera.ProcessMouseMovement(xoffset, yoffset: Single; constrainPitch: GLboolean);
+procedure TCamera.ProcessMouseMovement(xoffset, yoffset: Single; const constrainPitch: GLboolean);
 begin
   xoffset := xoffset * MouseSensitivity;
   yoffset := yoffset * MouseSensitivity;
@@ -166,7 +166,7 @@ begin
 end;
 
 // processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
-procedure TCamera.ProcessMouseScroll(yoffset: Single);
+procedure TCamera.ProcessMouseScroll(const yoffset: Single);
 begin
   Zoom := Zoom - yoffset;
   if Zoom < 1.0 then
