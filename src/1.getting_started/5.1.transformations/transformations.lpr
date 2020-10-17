@@ -66,7 +66,6 @@ var
   ImageRGBA: TMyRGBA8BitImage;
 
   transform: Tmatrix4_single;
-  vec3: Tvector3_single;
   transformLoc: GLuint;
 
 begin
@@ -214,14 +213,12 @@ begin
     // uncomment to print matrix in terminal
     //PrintMatrix4('transform', transform);
 
-    vec3.init(0.5, -0.5, 0);
-    transform := TranslateMatrix4(transform, vec3);
+    transform := TranslateMatrix4(transform, Vector3(0.5, -0.5, 0));
 
     // uncomment to print matrix in terminal
     //PrintMatrix4('transform after translation', transform);
 
-    vec3.init(0, 0, 1.0);
-    transform := RotateMatrix4(transform, Single(glfwGetTime), vec3);
+    transform := RotateMatrix4(transform, Single(glfwGetTime), Vector3(0, 0, 1.0));
 
     // uncomment to print matrix in terminal
     //PrintMatrix4('transform after rotate', transform);
