@@ -100,3 +100,5 @@ src/2\.lighting/5\.1\.light_casters_directional/light_casters_directional
 src/2\.lighting/5\.1\.light_casters_directional/light_casters_directional.exe
 src/2\.lighting/5\.2\.light_casters_point/light_casters_point
 src/2\.lighting/5\.2\.light_casters_point/light_casters_point.exe
+src/2.lighting/5.3.light_casters_spot/light_casters_spot
+src/2.lighting/5.3.light_casters_spot/light_casters_spot.exe
